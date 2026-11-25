@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Esta línea es clave para que se vea bien en celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Hola! Soy Baki 🐾</title>
+
+  <!-- Tipografías amigables (requieren internet; si no cargan, se usa una fuente del sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       VARIABLES: cambia aquí colores y tamaños de toda la página
+       ========================================================= */
+    :root {
+      --color-fondo: #FFF6EC;        /* crema de fondo */
+      --color-tarjeta: #FFFFFF;      /* fondo de las tarjetas */
+      --color-principal: #faa3eb;    /* naranjo cálido (títulos, botones) */
+      --color-aviso: #faa3eb;
+      --color-secundario: #6BBF8E;   /* verde (botón WhatsApp) */
+      --color-alerta: #E85D5D;       /* rojo suave (aviso de salud) */
+      --color-texto: #4A3B30;        /* café oscuro para textos */
+      --color-suave: #8C7B6E;        /* café claro para etiquetas */
+
+      /* ►►► TAMAÑO DE LA FOTO: cambia este valor para agrandar o achicar la imagen
+             Ejemplos: 140px (pequeña), 180px (mediana), 220px (grande) */
+      --tamano-foto: 220px;
+
+      --radio: 22px;                 /* qué tan redondeadas son las esquinas */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', system-ui, sans-serif;
+      background-color: var(--color-fondo);
+      /* Huellitas de fondo muy suaves */
+      background-image: radial-gradient(circle at 20px 20px, #F7E3CF 4px, transparent 5px),
+                        radial-gradient(circle at 60px 50px, #F7E3CF 3px, transparent 4px);
+      background-size: 80px 80px;
+      color: var(--color-texto);
+      line-height: 1.5;
+      padding: 16px;
+    }
+
+    /* Contenedor: en celular ocupa todo el ancho, en PC se centra */
+    .contenedor {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ================= ENCABEZADO ================= */
+    .encabezado {
+      text-align: center;
+      padding: 24px 16px 8px;
+    }
+
+    .saludo {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      color: var(--color-suave);
+    }
+
+    .nombre-mascota {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--color-principal);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    /* ================= FOTO ================= */
+    .foto {
+      width: 60%;
+      height: 60%;
+      margin: 0 auto;
+      border-radius: var(--radio);              /* círculo. Usa var(--radio) si la prefieres cuadrada redondeada */
+      border: 6px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(242, 140, 56, 0.30);
+      background: #FFE3C7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Estilo del emoji provisorio */
+    .foto .emoji {
+      font-size: calc(var(--tamano-foto) * 0.1);
+    }
+
+    /* Estilo de la imagen real (cuando la pongas) */
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;               /* recorta la foto para llenar el círculo sin deformarla */
+    }
+
+    /* ================= AVISO "ESTOY PERDIDO" ================= */
+    .aviso {
+      background: var(--color-aviso);
+      color: #FFFFFF;
+      text-align: center;
+      border-radius: var(--radio);
+      padding: 16px 18px;
+      margin: 22px 0 16px;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* ================= BOTONES DE CONTACTO RÁPIDO ================= */
+    .botones {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .boton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 58px;                /* botones grandes, fáciles de tocar con el dedo */
+      border-radius: 999px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      transition: transform 0.1s;
+    }
+
+    .boton:active { transform: scale(0.97); }
+    .boton-llamar   { background: var(--color-principal); }
+    .boton-whatsapp { background: var(--color-secundario); }
+
+    /* ================= TARJETAS DE INFORMACIÓN ================= */
+    .tarjeta {
+      background: var(--color-tarjeta);
+      border-radius: var(--radio);
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 14px rgba(74, 59, 48, 0.08);
+    }
+
+    .tarjeta h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.35rem;
+      color: var(--color-principal);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tarjeta p { margin-bottom: 8px; }
+    .tarjeta p:last-child { margin-bottom: 0; }
+
+    /* Lista de datos (etiqueta a la izquierda, valor a la derecha) */
+    .datos { list-style: none; }
+
+    .datos li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 2px dashed #F3E6D8;
+    }
+
+    .datos li:last-child { border-bottom: none; }
+
+    .etiqueta { color: var(--color-suave); font-weight: 600; }
+    .valor    { font-weight: 700; text-align: right; }
+
+    /* Tarjeta de salud con borde de alerta */
+    .tarjeta-salud { border-left: 6px solid var(--color-alerta); }
+    .tarjeta-salud h2 { color: var(--color-alerta); }
+
+    /* Etiquetas de personalidad */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: #FFF0E0;
+      color: var(--color-principal);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* Contactos */
+    .contacto {
+      padding: 12px 0;
+      border-bottom: 2px dashed #F3E6D8;
+    }
+
+    .contacto:last-child { border-bottom: none; }
+    .contacto strong { display: block; font-size: 1.1rem; }
+
+    .contacto a {
+      color: var(--color-principal);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    /* ================= PIE DE PÁGINA ================= */
+    .pie {
+      text-align: center;
+      color: var(--color-suave);
+      padding: 16px 0 28px;
+      font-size: 0.95rem;
+    }
+
+    /* Ajuste para pantallas muy pequeñas */
+    @media (max-width: 360px) {
+      .nombre-mascota { font-size: 2.1rem; }
+      :root { --tamano-foto: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="contenedor">
+
+    <!-- ================= ENCABEZADO ================= -->
+    <header class="encabezado">
+      <p class="saludo">¡Hola! Me llamo</p>
+      <h1 class="nombre-mascota">Baki</h1>
+
+      <!-- ================= FOTO =================
+           Ahora hay un emoji provisorio. Para usar la foto real:
+           1. Guarda la foto en la MISMA carpeta que este archivo (ej: Baki.jpg)
+           2. Borra la línea del <span class="emoji">
+           3. Descomenta (quita los <!-  la línea del <img> y cambia el nombre del archivo
+              <img src="Baki.jpeg" alt="Foto de Baki">
+          El tamaño se cambia en la variable --tamano-foto (arriba, en el CSS). -->
+      <div class="foto">
+          <img src="Baki.jpeg" alt="Foto de Baki">
+      </div>
+    </header>
+
+    <!-- ================= AVISO ================= -->
+    <div class="aviso">
+      🐾 Si me encontraste, ¡estoy perdida! Por favor avisa a mi familia 💛
+    </div>
+
+    <!-- ================= BOTONES RÁPIDOS =================
+         tel: → abre el teléfono para llamar. Escribe el número con código de país, sin espacios.
+         wa.me/ → abre WhatsApp. Número con código de país, sin "+" ni espacios. -->
+    <div class="botones">
+      <a class="boton boton-llamar" href="tel:+56936177277">📞 Llamar a mi familia</a>
+      <a class="boton boton-whatsapp" href="https://wa.me/56936177277?text=Hola,%20encontré%20a%20Baki">💬 Escribir por WhatsApp</a>
+    </div>
+
+    <!-- ================= SOBRE MÍ ================= -->
+    <section class="tarjeta">
+      <h2>🐕 Sobre mí</h2>
+      <ul class="datos">
+        <li><span class="etiqueta">Raza</span><span class="valor">Mestiza</span></li>
+        <li><span class="etiqueta">Edad</span><span class="valor">2 años</span></li>
+        <li><span class="etiqueta">Sexo</span><span class="valor">Hembra</span></li>
+        <li><span class="etiqueta">Color</span><span class="valor">Café claro con blanco</span></li>
+        <li><span class="etiqueta">Tamaño</span><span class="valor">Mediano</span></li>
+        <li><span class="etiqueta">Microchip</span><span class="valor">Sí</span></li>
+      </ul>
+    </section>
+
+    <!-- ================= PERSONALIDAD ================= -->
+    <section class="tarjeta">
+      <h2>💛 Mi personalidad</h2>
+      <p>Soy cariñosa y juguetona, pero si estoy asustada puedo ser tímida o ladrarte, dependiendo de como me caigas. Háblame suave y acércate despacito 🥺</p>
+      <div class="chips">
+        <span class="chip">Amistosa.</span>
+        <span class="chip">Le gustan los niños.</span>
+        <span class="chip">No se lleva bien con todos los perros.</span>
+        <span class="chip">No muerde.</span>
+      </div>
+    </section>
+
+    <!-- ================= SALUD ================= -->
+    <section class="tarjeta tarjeta-salud">
+      <h2>🩺 Importante sobre mi salud</h2>
+      <p><strong>Alergias:</strong> Carne.</p>
+      <p><strong>Medicamentos:</strong> No tomo medicamentos.</p>
+      <p><strong>Vacunas:</strong> Al día.</p>
+    </section>
+
+    <!-- ================= CONTACTO ================= -->
+    <section class="tarjeta">
+      <h2>🏡 Mi familia</h2>
+      <div class="contacto">
+        <strong>Trazy Nicho</strong>
+       </div>
+    </section>
+
+    <!-- ================= PIE ================= -->
+    <footer class="pie">
+      ¡Gracias por ayudarme a volver a casa! 🐾
+    </footer>
+
+  </main>
+</body>
+</html>
